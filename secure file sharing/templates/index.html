@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secure File Upload</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at top, #0f172a, #020617);
+        font-family: Arial, sans-serif;
+        color: #e5e7eb;
+    }
+
+    .card {
+        background: #020617;
+        width: 500px;
+        padding: 40px;
+        border-radius: 14px;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(0,0,0,0.7);
+    }
+
+    .title {
+        font-size: 26px;
+        margin-bottom: 25px;
+        color: #38bdf8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .drop-area {
+        border: 2px dashed #38bdf8;
+        border-radius: 14px;
+        padding: 45px 20px;
+        margin-bottom: 25px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    .drop-area:hover {
+        background: rgba(56,189,248,0.08);
+    }
+
+    .drop-area p {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .filename {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #a5f3fc;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    button {
+        background: #38bdf8;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        color: #020617;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0ea5e9;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="title">
+        🔐 Secure File Upload
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+
+    <div class="drop-area" id="dropArea">
+        <p><strong>Click or Drag file here</strong></p>
+        <div class="filename" id="fileName">No file selected</div>
+        <input type="file" name="file" id="fileInput" required>
+    </div>
+
+    <button type="submit">Upload Securely</button>
+</form>
+
+
+</div>
+
+<script>
+    const fileInput = document.getElementById("fileInput");
+    const fileName = document.getElementById("fileName");
+    const dropArea = document.getElementById("dropArea");
+
+    dropArea.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", () => {
+        fileName.textContent = fileInput.files.length
+            ? fileInput.files[0].name
+            : "No file selected";
+    });
+</script>
+
+
+</body>
+</html>
